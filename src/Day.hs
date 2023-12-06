@@ -5,6 +5,7 @@ module Day
     , makeParser
     , decimal
     , lexeme
+    , symbol
     , Day(..)
     , module P
     ) where
@@ -22,6 +23,9 @@ lexeme p = p <* spaces
 
 decimal :: (Integral a, Read a) => Parser a
 decimal = read <$> many1 digit
+
+symbol :: String -> Parser String
+symbol a = lexeme $ string a
 
 data Day i a b = Day
     { dayNum    :: Int
